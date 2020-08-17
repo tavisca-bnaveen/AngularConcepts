@@ -4,7 +4,7 @@ import {Logic} from './../../model/logic';
 import {Manufacturers, Categories} from './../../model/app.constants';
 import { CommentStmt } from '@angular/compiler';
 import { Observable } from 'rxjs';
-
+import {HttpService} from './../../services/app.httpservvice.service';
 @Component({
   selector: 'app-productform-component',
   templateUrl: './app.productform.view.html'
@@ -18,10 +18,10 @@ export class ProductFormComponent implements OnInit {
   private logic: Logic;
   columnHeaders: Array<string>;
   emps:Array<any>;
-  constructor() {
+  constructor(private http:HttpService) {
     this.product = new Product(0, '', '', '', '', '', 0);
     this.products = new Array<Product>();
-    this.logic = new Logic();
+    this.logic = new Logic(http);
     this.columnHeaders = new Array<string>();
     this.emps = new Array<any>();
     this.emps.push({id:1, name:'A'});

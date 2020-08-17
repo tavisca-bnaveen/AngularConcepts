@@ -15,6 +15,11 @@ export class HttpService {
   deleteProduct(prd: Product):void{
     this.DeleteProduct.emit(prd);
   }
+  getdatas():Promise<Product[]>{
+    let resp: Promise<Product[]>; //  resolve the Product[] for subscriber
+    resp = this.http.get<Product[]>(this.url).toPromise();
+    return resp;
+  }
   getData(): Observable<Product[]>{
     let resp: Observable<Product[]>; //  resolve the Product[] for subscriber
     resp = this.http.get<Product[]>(this.url);

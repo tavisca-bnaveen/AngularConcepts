@@ -23,7 +23,7 @@ export class ProductReactiveFormComponent implements OnInit {
   constructor(private http:HttpService) {
     this.product = new Product(0, '', '', '', '', '', 0);
     this.products = new Array<Product>();
-    this.logic = new Logic();
+    this.logic = new Logic(http);
     this.columnHeaders = new Array<string>();
     this.IsDelete=true;
 
@@ -54,6 +54,12 @@ export class ProductReactiveFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.products  =  this.logic.getProducts();
+  //   this.http.getData().subscribe((d) =>{
+  //     console.log(`this is output${JSON.stringify(d)}`)
+  //     this.products.push(d[0]);
+  //     for(let i=0;i<d.keys.length;i++)
+  //         this.products.push(d[i]);
+  // });
     console.log(JSON.stringify(this.products));
     // read properties from product object
     for (const p of Object.keys(this.product)) {
@@ -73,6 +79,7 @@ export class ProductReactiveFormComponent implements OnInit {
     // read the value posted from the FromGroup
     this.product = this.frmProduct.value;
     this.products = this.logic.addProduct(this.product);
+    
     console.log(JSON.stringify(this.products));
   }
   getSelectedProduct(event): void {

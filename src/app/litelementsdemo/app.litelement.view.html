@@ -1,0 +1,21 @@
+<h2>The Angular Component using List Element</h2>
+
+<div class="container">
+    Pass Data to LitElement
+    <input type="text" [(ngModel)]="message" />
+    <hr />
+    <div>
+        Value Received from the parent: {{receivedValue}}
+    </div>
+
+    <hr /> id: <input type="text" [(ngModel)]="obj.id" />
+    <br /> id: <input type="text" [(ngModel)]="obj.name" />
+    <input type="button" value="Clear" (click)="clear()" />
+    <input type="button" value="parent button" (click)="updateMessage()" />
+</div>
+
+<hr />
+<h4>The Lit Elements Renders Here</h4>
+<!--The Component will subscribe to the event using on-<Event-Name>-->
+<simple-element [inputMessage]="message" [val]="myvalue" [list]="['A','B','C','D']" [newlist]="listData" on-child-click="onChildClick($event)" [fname]="'Tejas'" [lname]="'Sabnis'" [records]="objData">
+</simple-element>
